@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/temp.css"/>
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    <div class="row max" test="响应式">
+       
+        <div id="test5" test="双向绑定">
+            {{title}}<br/>
+            <form action="">
+                <input v-model="value" class="form-control"/><br/>
+                输入表单改变值:{{value}}<br/>
+                <input v-model="foodtype" type="radio" name="ftype" value="sg" @click="choiceClass"   />
+                <label>水果</label>
+                <input v-model="foodtype"  type="radio" name="ftype" value="ls" @click="choiceClass"  />
+                <label>零食</label>
+                <input v-model="foodtype" type="radio" name="ftype" value="zs" @click="choiceClass"  />
+                <label>主食</label><br/>
+                你选中的is:{{foodtype}} -  {{format_foodtype}}<br/>
+               
+                <li v-for="tf,index in tempfoods">
+                <label :for="'ch'+index" >
+                    {{tf.name}}   {{tf.price}}元</label>
+                     <input type="checkbox"   :id="'ch'+index"    :value="tf"  v-model="sc"  @click="addTotal(tf.price)"  >
+                    <!-- @click="addCar(tf,tf.price)" -->
+                </li>
+                <br>
+                   <div class="alert alert-danger col-md-3"  v-for="s in sc">    <!-- v-for="s in sc" -->
+                         <!-- {{s.name}} -->
+                         {{s.name}}
+                    </div>
+                    <div class="alert alert-denger col-md-12">
+                        总价格is: {{total}}
+                    </div>
+            </form>
+        </div>
+    </div>
+    </center>
+</body>
+</html>
+ 
+ 
+
+<script>
+   
+    var test5 = new Vue({
+        el:"#test5",
+        data:{
+            value : "小鑫",
+            title:"双向绑定练习",
+            foods: {
+                sg: [{ name: "香蕉", price: 12 }, { name: "菠萝", price: 20 }, { name: "草莓", price: 15 }],
+                zs: [{ name: "米饭", price: 1 }, { name: "面条", price: 15 }, { name: "馒头", price: 0.5 }],
+                ls: [{ name: "香肠", price: 10 }, { name: "方便面", price: 5 }, { name: "草莓", price: 3 }],
+            },
+            //Shopping Cart 购物车
+            sc:[],
+           
+            foodtype:"",
+             
+            tempfoods:{},
+            total:0
+             
+        },
+        computed:{
+            format_foodtype:function(){
+                 
+                var strobj = {"sg":"水果","zs":"主食","ls":"零食"}
+                return  strobj[this.foodtype]
+            }
+        },
+        methods:{
+            addTotal:function(price){
+                if(event.target.checked){
+                    
+                    this.total+=price
+                }
+            },
+            transformat:function(varstr){
+                var strobj = {"sg":"水果","zs":"主食","ls":"零食"}
+                this.foodtype= strobj[varstr]
+
+            },
+             
+            choiceClass:function(event){
+                if(this.tempfoods!=null){
+                    this.tempfoods=null;
+                }
+                
+                var typekey = event.target.value
+               // this.transformat(typekey)
+                
+                this.tempfoods = this.foods[typekey]
+     
+            },
+
+        }
+    })
+</script>

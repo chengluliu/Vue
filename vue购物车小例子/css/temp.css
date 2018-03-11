@@ -1,0 +1,30 @@
+*,a{
+    margin:0;
+    padding:0;
+    border:none;
+    text-decoration:none;
+}
+.col{
+    font-size:30px; 
+    color:#F00;
+    border-left:solid 3px #000;
+}
+.max{
+    max-width: 80%;
+}
+#test1,#test2,#test3,#test4{
+    font-size:30px;
+    color:#F00;
+}
+.btn1{
+    font-size:30px;
+}
+.col1{
+    left:8%;
+}
+.class_vue_test1{
+    background-color:#000;
+}
+.class_vue_test2{
+    background-color:#26f;
+}
