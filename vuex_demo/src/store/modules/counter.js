@@ -5,8 +5,8 @@ const state ={
 }
 
 const getters={
-    //往外暴露状态属性,类似计算属性的作用
-    mycount:state=>state.count
+    // vuex 中的计算属性,自定义
+    mycount:state=>state.count+10
 }
 
 //vuex 内真正操作 state 的方法
