@@ -21,6 +21,12 @@ import { mapGetters, mapActions } from 'vuex'
 
 
         },
+        /**
+         * mapGetters的第二种调用方式
+         */
+        // computed:mapGetters({
+        //      count:'mycount'
+        // }),
         methods:mapActions([
             'add',
             'reduce'
